@@ -104,8 +104,7 @@ document.addEventListener("DOMContentLoaded", function () {
           mostrarAlerta("Redirigiendo...", "   ", "success");
           localStorage.setItem("user", JSON.stringify(data));
           setTimeout(function () {
-            window.location.href =
-              "../../../templates/public/chat/chatinicio.html";
+            window.location.href = "../templates/chat.html";
           }, 2000);
         } else {
           mostrarAlerta("Error", data, "error");

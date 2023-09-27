@@ -1,7 +1,6 @@
 const userLocal = localStorage.getItem("user");
 if (!userLocal) {
-  window.location.href =
-    "../../../templates/public/modulo_login/Login_base.html";
+  window.location.href = "../index.html";
 }
 const userLogin = JSON.parse(userLocal);
 
@@ -84,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
     .then((blob) => {
       const imgElement = document.getElementById("avatarImage");
       if (!blob || blob.size <= 0) {
-        imgElement.src = "../../../../static/assets/imgs/logoUsuario.png";
+        imgElement.src = "../imgs/logoUsuario.png";
       } else {
         const blobUrl = window.URL.createObjectURL(blob);
         imgElement.src = blobUrl;
@@ -116,8 +115,7 @@ document.addEventListener("DOMContentLoaded", function () {
           mostrarAlerta("Redirigiendo...", "   ", "success");
           localStorage.removeItem("user");
           setTimeout(function () {
-            window.location.href =
-              "../../../templates/public/modulo_login/Login_base.html";
+            window.location.href = "../index.html";
           }, 1000);
         }
       })
@@ -152,8 +150,7 @@ document.addEventListener("DOMContentLoaded", function () {
           localStorage.removeItem("user");
           localStorage.setItem("user", response);
           setTimeout(function () {
-            window.location.href =
-              "../../../templates/public/chat/chatinicio.html";
+            window.location.href = "../templates/chat.html";
           }, 1000);
         }
       })
@@ -168,7 +165,7 @@ document.addEventListener("DOMContentLoaded", function () {
   logoutLink.addEventListener("click", function (e) {
     e.preventDefault();
     setTimeout(function () {
-      window.location.href = "../../../templates/public/chat/chatinicio.html";
+      window.location.href = "../templates/chat.html";
     }, 500);
   });
 });

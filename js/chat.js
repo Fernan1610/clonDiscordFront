@@ -4,8 +4,7 @@ const form_chat = document.querySelector("#formulario_chat");
 const divContent = document.querySelector(".chat__content");
 const userLocal = localStorage.getItem("user");
 if (!userLocal) {
-  window.location.href =
-    "../../../templates/public/modulo_login/Login_base.html";
+  window.location.href = "../index.html";
 }
 const user = JSON.parse(userLocal);
 
@@ -202,7 +201,7 @@ function crearHtmlMensajes(listaMensajes) {
 //   botonConfig.addEventListener("click", function (e) {
 //     e.preventDefault();
 //     setTimeout(function () {
-//       window.location.href = "../../../templates/public/dashboard/home.html";
+//       window.location.href = "../../../templates/public/dashboard/perfil.html";
 //     }, 500);
 //   });
 // });

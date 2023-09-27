@@ -1,7 +1,6 @@
 const dataLogin = JSON.parse(localStorage.getItem("user"));
 if (!dataLogin) {
-  window.location.href =
-    "../../../templates/public/modulo_login/Login_base.html";
+  window.location.href = "../index.html";
 }
 //nombre del usuario en chat
 const chatMemberName = document.querySelector(".chat-member__name");
@@ -27,7 +26,7 @@ if (imgElement) {
       })
       .then((blob) => {
         if (blob.size <= 0) {
-          imgElement.src = "../../../../static/assets/imgs/logoUsuario.png";
+          imgElement.src = "../imgs/logoUsuario.png";
         } else {
           const blobUrl = window.URL.createObjectURL(blob);
           imgElement.src = blobUrl;

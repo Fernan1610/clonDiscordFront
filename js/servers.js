@@ -140,7 +140,6 @@ function crearListaServidores(data) {
     deleteButton.style.height = "20px";
     deleteButton.addEventListener("click", function (event) {
       event.stopPropagation();
-      const serverId = listItem.getAttribute("data-id");
       mostrarPopupConfirmacionEliminar(function (conf) {
         if (conf) {
           deleteServer(server.id);

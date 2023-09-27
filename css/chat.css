@@ -540,3 +540,8 @@ li.server:focus {
 .imagen_crear .imagen_crear {
   border-radius: 1px;
 }
+
+#searchInputFilter {
+  width: 50%;
+  height: 5%;
+}
