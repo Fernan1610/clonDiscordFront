@@ -1,5 +1,8 @@
 const dataLogin = JSON.parse(localStorage.getItem("user"));
-
+if (!dataLogin) {
+  window.location.href =
+    "../../../templates/public/modulo_login/Login_base.html";
+}
 //nombre del usuario en chat
 const chatMemberName = document.querySelector(".chat-member__name");
 if (chatMemberName) {

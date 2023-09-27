@@ -3,6 +3,10 @@ const mensajeInput = document.querySelector("#mensaje");
 const form_chat = document.querySelector("#formulario_chat");
 const divContent = document.querySelector(".chat__content");
 const userLocal = localStorage.getItem("user");
+if (!userLocal) {
+  window.location.href =
+    "../../../templates/public/modulo_login/Login_base.html";
+}
 const user = JSON.parse(userLocal);
 
 let channel_id = null;
@@ -22,11 +26,8 @@ if (mensajeInput) {
 /**
  * Inicializando SocketIO
  */
-const socket = io("http://127.0.0.1:5100/socket.io/");
+const socket = io("http://127.0.0.1:5100");
 
-const protocol = socket.protocol();
-
-console.log(protocol);
 //Escuchando connect
 socket.on("connect", function () {
   console.log("Socket Activo y escuchando.!");

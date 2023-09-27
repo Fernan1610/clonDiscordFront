@@ -1,4 +1,8 @@
 const userLocal = localStorage.getItem("user");
+if (!userLocal) {
+  window.location.href =
+    "../../../templates/public/modulo_login/Login_base.html";
+}
 const userLogin = JSON.parse(userLocal);
 
 function mostrarContenido(id) {
@@ -23,14 +27,14 @@ mostrarContenido("informacion");
 const inputName = document.getElementById("inputName");
 const inputApellido = document.getElementById("inputApellido");
 const inputEmail = document.getElementById("inputEmail");
-inputName.value = user.nombre;
-inputApellido.value = user.apellido;
-inputEmail.value = user.emailLogin;
+inputName.value = userLogin.nombre;
+inputApellido.value = userLogin.apellido;
+inputEmail.value = userLogin.emailLogin;
 
 // setea el sexo del usuario
 const radioMasculino = document.getElementById("Masculino");
 const radioFemenino = document.getElementById("Femenino");
-if (user.sexo === "Masculino") {
+if (userLogin.sexo === "Masculino") {
   radioMasculino.checked = true;
 } else if (sexoUsuario === "Femenino") {
   radioFemenino.checked = true;
@@ -48,7 +52,7 @@ fetch("http://127.0.0.1:5100/getListaPaises")
     const selectPaises = document.getElementById("list-country-edit");
     dataPaises.forEach(function (country) {
       const option = document.createElement("option");
-      if (user.pais === country.name_country) {
+      if (userLogin.pais === country.name_country) {
         option.selected = true;
         option.value = country.id;
       } else {
@@ -130,6 +134,7 @@ document.addEventListener("DOMContentLoaded", function () {
     e.preventDefault();
     const formData = new FormData(formUpdateUser);
     formData.append("idLogin", userLogin.idLogin);
+    formData.append("fecha_nacimiento", userLogin.fecha_nacimiento);
 
     fetch("http://127.0.0.1:5100/actualizar-mi-perfil", {
       method: "POST",
