@@ -1,0 +1,221 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat</title>
+    <link
+      rel="shortcut icon"
+      href="../../../static/assets/imgs/discord_icon_.ico"
+      type="image/x-icon"
+    />
+    <link rel="icon" href="assets/imgs/discord_icon_.ico" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../../../../static/assets/css/home.css" />
+    <link
+      rel="stylesheet"
+      href="../../../../../static/assets/css/pace_loader.css"
+    />
+    <link rel="stylesheet" href="../../../../../static/assets/css/menu.css" />
+    <link
+      rel="stylesheet"
+      href="../../../../../static/assets/css/custom_alert.css"
+    />
+  </head>
+
+  <body>
+    <header class="header">
+      <a href="./" class="logo">
+        <img id="avatarImage" src="" alt="Logo" />
+      </a>
+      <input class="menu-btn" type="checkbox" id="menu-btn" />
+      <label class="menu-icon" for="menu-btn"
+        ><span class="navicon"></span
+      ></label>
+      <ul class="menu">
+        <li id="redirectInit">
+          <a href="#" id="enlaceInicio">Inicio</a>
+        </li>
+
+        <li>
+          <a href="#" id="enlaceInformacion">Información</a>
+        </li>
+        <li>
+          <a href="#" id="enlaceEditarPerfil"> Editar Perfil </a>
+        </li>
+        <li id="logoutLink">
+          <a href="#">
+            <i class="bi bi-arrow-clockwise"></i>
+            Salir
+          </a>
+        </li>
+      </ul>
+    </header>
+
+    <main class="content-wrapper mt-5" style="margin-top: 80px !important">
+      <div class="container" style="width: 95% !important">
+        <!--INFORMACION-->
+        <div class="Perfil" id="informacion" style="display: none">
+          <div class="col-md-10 cajaLogin styFormDashboard">
+            <h2 class="text-center titleDashboard mt-3">
+              Proyecto Integrador Programacion 2
+              <hr />
+            </h2>
+            <h2 class="text-center titleDashboard mt-3">Desarrolladores:</h2>
+            <div class="programadores">
+              <div class="programador1">
+                <h1>Campero,Fredi Rodolfo</h1>
+              </div>
+              <div class="programdor2">
+                <h1>Aramayo,Fernando Gabriel</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- EDITAR PERFIL -->
+        <div class="Perfil" id="editarPerfil" style="display: none">
+          <div class="styFormDashboard">
+            <h2 class="text-center titleDashboard mt-3">
+              Editar mi Perfil
+              <hr />
+            </h2>
+            <form
+              id="form-update-user"
+              autocomplete="off"
+              enctype="multipart/form-data"
+            >
+              <div class="NombreApellido">
+                <div class="">
+                  <label for="Nombre" class="contenedorlabel"
+                    >Nombre de Usuario</label
+                  >
+                  <input
+                    id="inputName"
+                    type="text"
+                    name="nombre"
+                    class="form-control"
+                  />
+                </div>
+                <div class="">
+                  <label for="Apellido" class="contenedorlabel"
+                    >Apellido de Usuario</label
+                  >
+                  <input
+                    id="inputApellido"
+                    type="text"
+                    name="apellido"
+                    class="form-control"
+                  />
+                </div>
+              </div>
+
+              <div class="email">
+                <div class="">
+                  <label for="Email" class="contenedorlabel">Email</label>
+                  <input
+                    id="inputEmail"
+                    type="email"
+                    name="email"
+                    class="form-control"
+                  />
+                </div>
+                <div class="">
+                  <label
+                    for="Password"
+                    class="contenedorlabel"
+                    style="color: crimson"
+                    >Nueva Password</label
+                  >
+                  <input type="password" name="password" class="form-control" />
+                </div>
+              </div>
+
+              <div class="email">
+                <div class="">
+                  <label
+                    for="repite_password"
+                    class="contenedorlabel"
+                    style="color: crimson"
+                    >Repetir Password</label
+                  >
+                  <input
+                    type="password"
+                    name="repite_password"
+                    class="form-control"
+                  />
+                </div>
+                <div class="pais">
+                  <label for="Country" class="contenedorlabel">País</label>
+                  <select
+                    name="pais_id"
+                    class="form-control"
+                    id="list-country-edit"
+                  ></select>
+                </div>
+              </div>
+              <div class="contenedorgenero">
+                <div class="genero">
+                  <label for="sex" class="mt-3">Sexo</label>
+                  <br />
+                  <div class="form-check form-check-inline">
+                    <input
+                      name="sexo"
+                      class="form-check-input"
+                      type="radio"
+                      id="Masculino"
+                      value="Masculino"
+                    />
+                    <label class="form-check-label" for="Masculino"
+                      >Masculino</label
+                    >
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input
+                      name="sexo"
+                      class="form-check-input"
+                      type="radio"
+                      id="Femenino"
+                      value="Femenino"
+                    />
+                    <label class="form-check-label" for="Femenino"
+                      >Femenino</label
+                    >
+                  </div>
+                </div>
+                <div class="inputImagen">
+                  <label for="imagen">Seleccionar una imagen:</label>
+                  <input
+                    class="imagen"
+                    type="file"
+                    name="imagen"
+                    id="imagen"
+                    accept="image/*"
+                  />
+                </div>
+              </div>
+
+              <div class="row text-center justify-content-md-center mt-4">
+                <div class="col-md-12 mt-3 mb-3">
+                  <button type="submit" class="btn-send">
+                    Guardar Cambios
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+    <div id="alertContainer"></div>
+    <script src="../../../../../../static/assets/js/perfil.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="../../../../../../static/assets/js/pace.min.js"></script>
+    <script src="../../../../../../static/assets/js/custom_alert.js"></script>
+    <script src="../../../../../../static/assets/js/popUpError.js"></script>
+  </body>
+</html>

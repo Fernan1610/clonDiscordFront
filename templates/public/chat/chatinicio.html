@@ -1,0 +1,302 @@
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="../../../../../../static/assets/css/chat.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../../../../../../static/assets/css/loader.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../../../../../../static/assets/css/popUp.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../../../../../../static/assets/css/custom_alert.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../../../../../../static/assets/css/menu.css"
+    />
+    <title>Chat</title>
+  </head>
+  <body>
+    <div class="contenedor">
+      <div class="contenedorServidorPerfil">
+        <div class="contenedorServidor">
+          <!-- LISTA DE SERVIDORES LATERAL-->
+          <div class="sidebar" id="servers-sidebar">
+            <ul id="server-list"></ul>
+            <button id="show-popup_crear_Server" title="Crear servidor">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                x="0px"
+                y="0px"
+                width="80%"
+                height="80%"
+                viewBox="0,0,256,256"
+              >
+                <g
+                  fill="#ffffff"
+                  fill-rule="nonzero"
+                  stroke="none"
+                  stroke-width="1"
+                  stroke-linecap="butt"
+                  stroke-linejoin="miter"
+                  stroke-miterlimit="10"
+                  stroke-dasharray=""
+                  stroke-dashoffset="0"
+                  font-family="none"
+                  font-weight="none"
+                  font-size="none"
+                  text-anchor="none"
+                  style="mix-blend-mode: normal"
+                >
+                  <g transform="scale(5.12,5.12)">
+                    <path
+                      d="M25,2c-12.73552,0 -23,10.26448 -23,23c0,12.73552 10.26448,23 23,23c12.73552,0 23,-10.26448 23,-23c0,-12.73552 -10.26448,-23 -23,-23zM25,4c11.66448,0 21,9.33552 21,21c0,11.66448 -9.33552,21 -21,21c-11.66448,0 -21,-9.33552 -21,-21c0,-11.66448 9.33552,-21 21,-21zM24,13v11h-11v2h11v11h2v-11h11v-2h-11v-11z"
+                    ></path>
+                  </g>
+                </g>
+              </svg>
+            </button>
+            <button id="show-servers-free" title="Buscar servidores">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="80%"
+                height="80%"
+                fill="#ffffff"
+                class="bi bi-compass"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M8 16.016a7.5 7.5 0 0 0 1.962-14.74A1 1 0 0 0 9 0H7a1 1 0 0 0-.962 1.276A7.5 7.5 0 0 0 8 16.016zm6.5-7.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"
+                />
+                <path
+                  d="m6.94 7.44 4.95-2.83-2.83 4.95-4.949 2.83 2.828-4.95z"
+                />
+              </svg>
+            </button>
+          </div>
+          <div class="sidebar2" id="channels-sidebar">
+            <div class="headerChanel">
+              <span id="nameServidor" class="nameServidor"></span>
+              <button
+                id="show-popup_crear_canal"
+                title="Crear Canal"
+                class="btn-crear-canal"
+                style="display: none"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  x="0px"
+                  y="0px"
+                  width="2rem"
+                  height="2rem"
+                  viewBox="0,0,256,256"
+                >
+                  <g
+                    fill="#fffff5"
+                    fill-rule="nonzero"
+                    stroke="none"
+                    stroke-width="1"
+                    stroke-linecap="butt"
+                    stroke-linejoin="miter"
+                    stroke-miterlimit="10"
+                    stroke-dasharray=""
+                    stroke-dashoffset="0"
+                    font-family="none"
+                    font-weight="none"
+                    font-size="none"
+                    text-anchor="none"
+                    style="mix-blend-mode: normal"
+                  >
+                    <g transform="scale(5.12,5.12)">
+                      <path
+                        d="M25,2c-12.73552,0 -23,10.26448 -23,23c0,12.73552 10.26448,23 23,23c12.73552,0 23,-10.26448 23,-23c0,-12.73552 -10.26448,-23 -23,-23zM25,4c11.66448,0 21,9.33552 21,21c0,11.66448 -9.33552,21 -21,21c-11.66448,0 -21,-9.33552 -21,-21c0,-11.66448 9.33552,-21 21,-21zM24,13v11h-11v2h11v11h2v-11h11v-2h-11v-11z"
+                      ></path>
+                    </g>
+                  </g>
+                </svg>
+              </button>
+            </div>
+            <ul id="channel-list"></ul>
+          </div>
+        </div>
+        <!-- AREA PERFIL -->
+        <div class="perfil">
+          <div class="chat__messaging messaging-member--online">
+            <div class="chat__infos">
+              <div class="chat-member__wrapper" data-online="true">
+                <div class="chat-member__avatar">
+                  <img id="avatarImage" src="" alt="avatar" />
+                  <div class="user-status user-status--large"></div>
+                </div>
+                <div class="chat-member__details">
+                  <span class="chat-member__name"></span>
+                  <span class="chat-member__status">Conectado</span>
+                </div>
+                <button class="botonConfig">
+                  <a href="{{ url_for('edit_profile') }}">
+                    <img
+                      src="../../../../static/assets/imgs/settings.png"
+                      alt="settings"
+                      width="30"
+                      height="30"
+                    />
+                  </a>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- pop up unirse a server -->
+      <div id="modal" class="modal">
+        <div class="modal-content">
+          <h2>Unirse al servidor</h2>
+          <p>¿Seguro que desea unirse al servidor?</p>
+          <button id="confirm-join">Sí</button>
+          <button id="cancel-join">Cancelar</button>
+        </div>
+      </div>
+
+      <!-- inicio pop up server -->
+      <div class="popup_crear" id="popup_crear_Server">
+        <div class="popup-content_crear">
+          <h2>Crear Servidor</h2>
+          <form
+            id="crear-server-form"
+            method="POST"
+            class="form__crear"
+            enctype="multipart/form-data"
+          >
+            <div class="input_text_crear">
+              <label for="dato">Nombre del nuevo servidor</label>
+              <input type="text" id="dato_crear_Server" name="dato" required />
+            </div>
+            <!-- <div class="input_imagen_crear">
+              <label for="imagen">Seleccionar una imagen:</label>
+              <input
+                class="imagen_crear"
+                type="file"
+                name="imagen"
+                id="imagen_crear"
+                accept="image/*"
+              />
+            </div> -->
+            <br />
+            <div class="btn_crear">
+              <button type="submit" id="pop-up_create_confirm">
+                Confirmar
+              </button>
+              <button id="close-popup_crear_Server">Cancelar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- fin pop up server -->
+      <!-- inicio crear canal -->
+      <div class="popup_crear" id="popup_crear_canal">
+        <div class="popup-content_crear">
+          <h2>Crear Canal</h2>
+          <form id="crear-chanel-form" method="POST" class="form__crear">
+            <div class="input_text_crear">
+              <label for="dato">Nombre del nuevo canal</label>
+              <input type="text" id="dato_crear_canal" name="dato" required />
+            </div>
+            <br />
+            <div class="btn_crear">
+              <button type="submit">Confirmar</button>
+              <button id="close-popup_crear_canal">Cancelar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- fin crear canal -->
+
+      <div class="main-content">
+        <!-- AREA LOADING-->
+        <div id="loader-out">
+          <div id="loader-container">
+            <p id="loading-text">Cargando</p>
+          </div>
+        </div>
+        <div class="chat">
+          <div class="chat__container">
+            <div class="chat__wrapper">
+              <div class="chat__content">
+                <!-- AREA MENSAJES -->
+              </div>
+              <span class="contentChat"></span>
+              <!-- AREA ESCRITURA CHAT -->
+              <form
+                style="display: none"
+                class="form-chat"
+                id="formulario_chat"
+                name="formulario_chat"
+                method="POST"
+                autocomplete="off"
+                enctype="multipart/form-data"
+              >
+                <div class="chat__send-container">
+                  <div class="custom-form__send-wrapper">
+                    <input
+                      type="text"
+                      class="form-control custom-form"
+                      name="mensaje"
+                      id="mensaje"
+                      placeholder="Escribe tu mensaje"
+                      autocomplete="off"
+                    />
+
+                    <button type="submit" class="custom-form__send-submit">
+                      <svg
+                        style="color: rgb(0, 0, 0)"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="500"
+                        height="512"
+                        viewBox="0 0 500 512"
+                      >
+                        <title>ionicons-v5-q</title>
+                        <path
+                          d="M16,464,496,256,16,48V208l320,48L16,304Z"
+                          fill="#000000"
+                        ></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="alertContainer"></div>
+    <!-- AREA JS SCRIPTS-->
+    <script>
+      window.addEventListener("load", (event) => {
+        const loader = document.getElementById("loader-out");
+        setTimeout(function () {
+          loader.style.opacity = "0";
+          setTimeout(function () {
+            loader.style.display = "none";
+          }, 500);
+        }, 500);
+      });
+    </script>
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
+    <script src="../../../../../static/assets/js/usuario.js"></script>
+    <script src="../../../../../../static/assets/js/chat.js"></script>
+    <script src="../../../../../../static/assets/js/popUpError.js"></script>
+    <script src="../../../../../static/assets/js/servers.js"></script>
+    <script src="../../../../../static/assets/js/chanels.js"></script>
+  </body>
+</html>
