@@ -1,5 +1,5 @@
 const userLocal = localStorage.getItem("user");
-const user = JSON.parse(userLocal);
+const userLogin = JSON.parse(userLocal);
 
 function mostrarContenido(id) {
   document.getElementById("informacion").style.display = "none";
@@ -64,7 +64,13 @@ fetch("http://127.0.0.1:5100/getListaPaises")
 
 // carga la imagen
 document.addEventListener("DOMContentLoaded", function () {
-  fetch("http://127.0.0.1:5100/get-foto-profile")
+  fetch("http://127.0.0.1:5100/get-foto-profile", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({idLogin: userLogin.idLogin}),
+  })
     .then((response) => {
       if (!response.ok) {
         return returnError(response);
@@ -123,6 +129,7 @@ document.addEventListener("DOMContentLoaded", function () {
   formUpdateUser.addEventListener("submit", function (e) {
     e.preventDefault();
     const formData = new FormData(formUpdateUser);
+    formData.append("idLogin", userLogin.idLogin);
 
     fetch("http://127.0.0.1:5100/actualizar-mi-perfil", {
       method: "POST",

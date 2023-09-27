@@ -5,6 +5,8 @@ const closePopupButton = document.getElementById("close-popup_crear_Server");
 const confirmPopUp = document.getElementById("pop-up_create_confirm");
 const listServer = document.getElementById("server-list");
 const servidoresPanel = document.querySelector(".chat__content");
+const userUserLogin = localStorage.getItem("user");
+const userJson = JSON.parse(userUserLogin);
 
 showPopupButton.addEventListener("click", () => {
   popupContainer.style.display = "block";
@@ -19,10 +21,9 @@ popupContainer.addEventListener("click", (event) => {
     popupContainer.style.display = "none";
   }
 });
-
 // GET SERVIDORES POR USUARIO
 document.addEventListener("DOMContentLoaded", function () {
-  fetch("http://127.0.0.1:5100/getServidoresByUsuario")
+  fetch(`http://127.0.0.1:5100/getServidoresByUsuario/${userJson.idLogin}`)
     .then((response) => {
       if (!response.ok) {
         return returnError(response);
@@ -50,6 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const formData = new FormData();
     formData.append("nombre", nombreServidor);
+    formData.append("idLogin", userJson.idLogin);
     // formData.append("imagen", imagen);
 
     fetch("http://127.0.0.1:5100/createServer", {
@@ -157,7 +159,7 @@ function deleteServer(serverId) {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({server_id: serverId}),
+    body: JSON.stringify({server_id: serverId, idLogin: userJson.idLogin}),
   })
     .then((response) => {
       if (!response.ok) {
@@ -198,7 +200,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function fetchGetServidores() {
-  fetch("http://127.0.0.1:5100/getListServers")
+  fetch(`http://127.0.0.1:5100/getListServers/${userJson.idLogin}`)
     .then((response) => {
       if (!response.ok) {
         return returnError(response);
@@ -325,7 +327,7 @@ function unirseAServidor(servidorId) {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({serverId: servidorId}),
+    body: JSON.stringify({serverId: servidorId, idLogin: userJson.idLogin}),
   })
     .then((response) => {
       if (!response.ok) {

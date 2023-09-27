@@ -22,8 +22,11 @@ if (mensajeInput) {
 /**
  * Inicializando SocketIO
  */
-const socket = io();
+const socket = io("http://127.0.0.1:5100/socket.io/");
 
+const protocol = socket.protocol();
+
+console.log(protocol);
 //Escuchando connect
 socket.on("connect", function () {
   console.log("Socket Activo y escuchando.!");
@@ -46,6 +49,7 @@ if (form_chat) {
     socket.emit("mensaje_chat", {
       mensaje: mensajeInput.value,
       canal_id: channel_id,
+      id_user: user.idLogin,
     });
     mensajeInput.value = "";
   });
@@ -143,6 +147,7 @@ function guardarCambios(button) {
       mensaje_id: messageId,
       mensaje: nuevoMensaje,
       channel_id: channel_id,
+      id_user: user.idLogin,
     });
   } catch (error) {
     mostrarError(error);

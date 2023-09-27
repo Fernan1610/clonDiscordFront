@@ -9,7 +9,13 @@ if (chatMemberName) {
 const imgElement = document.getElementById("avatarImage");
 if (imgElement) {
   document.addEventListener("DOMContentLoaded", function () {
-    fetch("http://127.0.0.1:5100/get-foto-profile")
+    fetch("http://127.0.0.1:5100/get-foto-profile", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({idLogin: dataLogin.idLogin}),
+    })
       .then((response) => {
         if (!response.ok) {
           throw new Error("Error al obtener la imagen");
