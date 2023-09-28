@@ -28,7 +28,7 @@ const inputApellido = document.getElementById("inputApellido");
 const inputEmail = document.getElementById("inputEmail");
 inputName.value = userLogin.nombre;
 inputApellido.value = userLogin.apellido;
-inputEmail.value = userLogin.emailLogin;
+inputEmail.value = userLogin.email;
 
 // setea el sexo del usuario
 const radioMasculino = document.getElementById("Masculino");
